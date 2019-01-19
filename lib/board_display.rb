@@ -16,9 +16,9 @@ class BoardDisplay
 
   def sort_orders(orders)
     if orders[0].type == :BUY
-      orders.sort_by {|order| order.price}.reverse!
+      orders.sort_by { |order| order.price }.reverse!
     else
-      orders.sort_by {|order| order.price}
+      orders.sort_by { |order| order.price }
     end
   end
 end

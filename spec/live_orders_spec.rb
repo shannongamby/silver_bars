@@ -6,12 +6,14 @@ describe LiveOrders do
 
   context 'storing orders' do
     it 'should store buy orders correctly' do
-      subject.add_buy_order(buy_order)
+      allow(buy_order).to receive(:type) { :BUY }
+      subject.add_order(buy_order)
       expect(subject.buy_orders.first).to eq buy_order
     end
 
     it 'should store sell orders correctly' do
-      subject.add_sell_order(sell_order)
+      allow(sell_order).to receive(:type) { :SELL }
+      subject.add_order(sell_order)
       expect(subject.sell_orders.first).to eq sell_order
     end
   end

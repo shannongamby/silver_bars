@@ -7,5 +7,4 @@ class Order
     @price = price
     @type = type
   end
-
 end

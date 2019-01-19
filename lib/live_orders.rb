@@ -5,12 +5,7 @@ class LiveOrders
     @sell_orders = []
   end
 
-  def add_buy_order(order)
-    @buy_orders << order
+  def add_order(order)
+    order.type == :BUY ? @buy_orders << order : @sell_orders << order
   end
-
-  def add_sell_order(order)
-     @sell_orders << order
-  end
-
 end

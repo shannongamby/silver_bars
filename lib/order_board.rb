@@ -10,13 +10,13 @@ class OrderBoard
 
   def place_buy_order(user_id, quantity, price)
     order = create_order(user_id, quantity, price, :BUY)
-    @live_orders.add_buy_order(order)
+    @live_orders.add_order(order)
     'Your order has been placed.'
   end
 
   def place_sell_order(user_id, quantity, price)
     order = create_order(user_id, quantity, price, :SELL)
-    @live_orders.add_sell_order(order)
+    @live_orders.add_order(order)
     'Your order has been placed.'
   end
 
