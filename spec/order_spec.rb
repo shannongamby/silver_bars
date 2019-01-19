@@ -1,8 +1,8 @@
 require 'order'
 
 describe Order do
-  subject { described_class.new(1, 10, 100, :BUY) }
-  
+  subject { described_class.new(1, 10, 100, :BUY, 1) }
+
   it 'should store the user_id' do
     expect(subject.user_id).to eq 1
   end
@@ -16,6 +16,10 @@ describe Order do
   end
 
   it 'should store type' do
+    expect(subject.type).to eq :BUY
+  end
+
+  it 'should store order_id' do
     expect(subject.type).to eq :BUY
   end
 end

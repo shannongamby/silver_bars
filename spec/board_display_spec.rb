@@ -4,12 +4,12 @@ require 'order'
 describe BoardDisplay do
   context 'ordering by price' do
     before :each do
-      @buy_one = Order.new(1, 10, 100, :BUY)
-      @buy_two = Order.new(1, 10, 1, :BUY)
-      @buy_three = Order.new(1, 10, 10, :BUY)
-      @sell_one = Order.new(1, 10, 100, :SELL)
-      @sell_two = Order.new(1, 10, 1, :SELL)
-      @sell_three = Order.new(1, 10, 10, :SELL)
+      @buy_one = Order.new(1, 10, 100, :BUY, 1)
+      @buy_two = Order.new(1, 10, 1, :BUY, 2)
+      @buy_three = Order.new(1, 10, 10, :BUY, 3)
+      @sell_one = Order.new(1, 10, 100, :SELL, 1)
+      @sell_two = Order.new(1, 10, 1, :SELL, 2)
+      @sell_three = Order.new(1, 10, 10, :SELL, 3)
     end
 
     it 'should store buy_orders ordered by price (descending)' do

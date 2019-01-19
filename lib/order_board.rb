@@ -23,6 +23,8 @@ class OrderBoard
   private
 
   def create_order(user_id, quantity, price, type)
-    Order.new(user_id, quantity, price, type)
+    order_id = @live_orders.generate_order_id(type)
+    Order.new(user_id, quantity, price, type, order_id)
   end
+
 end
