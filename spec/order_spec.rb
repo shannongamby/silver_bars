@@ -1,9 +1,7 @@
 require 'order'
 
 describe Order do
-  before :each do
-    subject.create(1, 10, 100, :BUY)
-  end
+  subject { described_class.new(1, 10, 100, :BUY) }
   
   it 'should store the user_id' do
     expect(subject.user_id).to eq 1
