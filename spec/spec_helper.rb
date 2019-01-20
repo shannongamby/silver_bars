@@ -13,4 +13,6 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 end
 
-SimpleCov.start
+SimpleCov.start do
+  add_filter "spec/sorter_spec.rb"
+end

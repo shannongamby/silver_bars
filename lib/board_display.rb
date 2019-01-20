@@ -1,24 +1,23 @@
 class BoardDisplay
-  attr_reader :buy_board, :sell_board
-  def initialize
-    @buy_board = nil
-    @sell_board = nil
+  def initialize(aggregator = Aggregator.new, sorter = Sorter.new)
+    @aggregator = aggregator
+    @sorter = sorter
   end
 
   def print_board(buy_orders, sell_orders)
-    create_board(buy_orders, sell_orders)
+    buy_board = create_board(buy_orders, :BUY)
+    sell_board = create_board(sell_orders, :SELL)
+    display(buy_board, :BUY)
+    display(sell_board, :SELL)
   end
 
-  def create_board(buy_orders, sell_orders)
-    @buy_board = sort_orders(buy_orders)
-    @sell_board = sort_orders(sell_orders)
+  def create_board(orders, type)
+    @sorter.sort(@aggregator.aggregate(orders), type)
   end
 
-  def sort_orders(orders)
-    if orders[0].type == :BUY
-      orders.sort_by { |order| order.price }.reverse!
-    else
-      orders.sort_by { |order| order.price }
+  def display(board, type)
+    board.each do |order|
+      puts "#{type}: #{order[:quantity]}kg for £#{order[:price]}"
     end
   end
 end

@@ -10,6 +10,9 @@ describe LiveOrders do
       subject.add_order(order)
       expect(subject.orders.first).to eq order
     end
+    it 'should return the added order object' do
+      expect(subject.add_order(order)).to eq order
+    end
   end
 
   context 'removing orders' do
@@ -18,6 +21,11 @@ describe LiveOrders do
       subject.add_order(order)
       subject.delete_order(1)
       expect(subject.orders).to eq []
+    end
+    it 'should return the removed order object' do
+      allow(order).to receive(:order_id) { 1 }
+      subject.add_order(order)
+      expect(subject.delete_order(1)).to eq order
     end
   end
 

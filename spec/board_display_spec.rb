@@ -2,25 +2,30 @@ require 'board_display'
 require 'order'
 
 describe BoardDisplay do
-  context 'ordering by price' do
-    before :each do
-      @buy_one = Order.new(1, 10, 100, :BUY, 1)
-      @buy_two = Order.new(1, 10, 1, :BUY, 2)
-      @buy_three = Order.new(1, 10, 10, :BUY, 3)
-      @sell_one = Order.new(1, 10, 100, :SELL, 1)
-      @sell_two = Order.new(1, 10, 1, :SELL, 2)
-      @sell_three = Order.new(1, 10, 10, :SELL, 3)
-    end
+  let(:aggregator) { double :aggregator }
+  let(:sorter) { double :sorter }
+  subject { described_class.new(aggregator, sorter) }
 
-    it 'should store buy_orders ordered by price (descending)' do
-      subject.print_board([@buy_one, @buy_two, @buy_three], [@sell_one, @sell_two, @sell_three])
-      expect(subject.buy_board).to eq [@buy_one, @buy_three, @buy_two]
-    end
+  before :each do
+    @order_one = {:price => 1, :quantity => 5}
+  end
 
-    it 'should store sell_orders ordered by price (ascending)' do
-      subject.print_board([@buy_one, @buy_two, @buy_three], [@sell_one, @sell_two, @sell_three])
-      expect(subject.sell_board).to eq [@sell_two, @sell_three, @sell_one]
+  context 'printing' do
+    it 'prints the type, quantity, and price' do
+      expect { subject.display([@order_one], :BUY) }.to output(
+        "BUY: 5kg for £1\n" \
+      ).to_stdout
     end
   end
 
+  context 'when #print_board is called' do
+    it 'should pass the orders to @sorter and @aggregator' do
+      aggregator = spy('aggregator')
+      sorter = spy('sorter')
+      subject = BoardDisplay.new(aggregator, sorter)
+      subject.print_board(@order_one, @order_one)
+      expect(sorter).to have_received(:sort).twice
+      expect(aggregator).to have_received(:aggregate).twice
+    end
+  end
 end

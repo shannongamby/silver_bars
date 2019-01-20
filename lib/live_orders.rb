@@ -6,19 +6,19 @@ class LiveOrders
 
   def add_order(order)
     @orders << order
-    return order
+    order
   end
 
   def delete_order(id)
-    order = get_by_id(id)
+    removed_order = get_by_id(id)
     @orders.delete_if { |order| order.order_id == id }
-    return order
+    removed_order
   end
 
   def get_by_id(id)
-    @orders.each { |order|
+    @orders.each do |order|
       return order if order.order_id == id
-    }
+    end
   end
 
   def get_by_type(type)
@@ -26,7 +26,7 @@ class LiveOrders
   end
 
   def generate_order_id
-    @orders.sort_by! { |order| order.order_id }
+    @orders.sort_by!(&:order_id)
     if @orders.empty?
       1
     else

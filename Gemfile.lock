@@ -53,7 +53,7 @@ DEPENDENCIES
   rspec (~> 3.8)
   rubocop (~> 0.62.0)
   simplecov (~> 0.16.1)
-  simplecov-console (~> 0.4.2)
+  simplecov-console
 
 RUBY VERSION
    ruby 2.5.3p105
