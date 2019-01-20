@@ -6,9 +6,6 @@ This is a command line app in which users can place buy/sell orders (for silver 
 - Clone this repo and run `bundle install` to install dependencies.
 - Use `rspec` to run unit and feature tests. This will also show test coverage.
 
-## Demonstration
-Running `ruby example.rb` will produce the following demonstration:
-
 ## Interacting on the command line
 - To start interacting:
 ```
@@ -21,7 +18,7 @@ $ client = OrderBoard.new
 $ client.place_order(1, 1, 1, :BUY)
 => #<Order:0x00007fc3fc9ce7b8 @user_id=1, @quantity=1, @price=1, @type=:BUY, @order_id=1>
 ```
-- The order ID can be used to remove orders.
+- The order ID can be used to remove orders:
 ```
 $ client.remove_order(1)
 ```
@@ -46,5 +43,18 @@ $ client.print_order_board
 In order to cancel an order, each order must be uniquely identifiable. So, on my repo class, (**LiveOrders**), there is a `generate_order_id` function, which will give each order an unique ID.
 
 ### Storing Orders
-I chose to store the buy and sell orders in a single array. If I was storing them on a database, I would store them in a single table because they are exactly the same class of object. This also made it simpler to make sure every order had a unique Order ID. 
+I chose to store the buy and sell orders in a single array. If I was storing them on a database, I would store them in a single table because they are of the same class. This also made it simpler to make sure every order had a unique Order ID. 
+
+### Improvements
+If I had more time I would make an OrderFactory class whose responsibility it would be to create Order objects.
+
+## Demonstration
+This is the code in `example.rb`:
+  
+![demo](assets/example.png)
+  
+    
+Running `ruby example.rb` will produce the following output:
+  
+![screenshot](assets/output.png)
 
