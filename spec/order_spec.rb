@@ -20,6 +20,6 @@ describe Order do
   end
 
   it 'should store order_id' do
-    expect(subject.type).to eq :BUY
+    expect(subject.order_id).to eq 1
   end
 end

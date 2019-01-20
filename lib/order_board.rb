@@ -8,22 +8,18 @@ class OrderBoard
     @live_orders = live_orders
   end
 
-  def place_buy_order(user_id, quantity, price)
-    order = create_order(user_id, quantity, price, :BUY)
-    @live_orders.add_order(order)
-    'Your order has been placed.'
+  def place_order(user_id, quantity, price, type)
+    @live_orders.add_order(create_order(user_id, quantity, price, type))
   end
 
-  def place_sell_order(user_id, quantity, price)
-    order = create_order(user_id, quantity, price, :SELL)
-    @live_orders.add_order(order)
-    'Your order has been placed.'
+  def remove_order(order_id)
+    @live_orders.delete_order(order_id)
   end
 
   private
 
   def create_order(user_id, quantity, price, type)
-    order_id = @live_orders.generate_order_id(type)
+    order_id = @live_orders.generate_order_id
     Order.new(user_id, quantity, price, type, order_id)
   end
 

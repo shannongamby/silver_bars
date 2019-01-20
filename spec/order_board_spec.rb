@@ -2,20 +2,25 @@ require 'order_board'
 
 describe OrderBoard do
   let(:board_display) { double :board_display }
-  let(:live_orders) { double :live_orders }
-  subject { described_class.new(board_display, live_orders) }
 
   context 'placing orders' do
-    it 'should confirm that a buy order has been placed' do
-      allow(live_orders).to receive(:add_order)
-      allow(live_orders).to receive(:generate_order_id)
-      expect(subject.place_buy_order(1, 10, 100)).to eq 'Your order has been placed.'
+    it 'should return the order' do
+      live_orders = spy('live_orders')
+      subject = OrderBoard.new(board_display, live_orders)
+      subject.place_order(1, 1, 1, :BUY)
+      expect(live_orders).to have_received(:add_order)
+      expect(live_orders).to have_received(:generate_order_id)
+    end
+  end
+
+  context 'removing orders' do
+    it 'should return the order that has been removed' do
+      live_orders = spy('live_orders')
+      subject = OrderBoard.new(board_display, live_orders)
+      subject.place_order(1, 1, 1, :BUY)
+      subject.remove_order(1)
+      expect(live_orders).to have_received(:delete_order).with(1)
     end
 
-    it 'should confirm that a sell order has been placed' do
-      allow(live_orders).to receive(:add_order)
-      allow(live_orders).to receive(:generate_order_id)
-      expect(subject.place_sell_order(1, 10, 100)).to eq 'Your order has been placed.'
-    end
   end
 end
