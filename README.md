@@ -2,7 +2,10 @@
 
 # Silver Bars Tech Test
 This is a command line app in which users can place buy/sell orders (for silver bars) and print a live order board to the terminal in order to see a summary of orders.
-- Written in Ruby, tested with RSpec.
+- Written in Ruby
+- Tested with RSpec
+  
+I focussed on TDD and implementing OOD whilst completing this tech test.
 
 ## Setting Up
 - Clone this repo and move into the silver_bars directory: `cd silver_bars`
