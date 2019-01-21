@@ -1,10 +1,12 @@
+[![Coverage Status](https://coveralls.io/repos/github/shannongamby/silver_bars/badge.svg?branch=master)](https://coveralls.io/github/shannongamby/silver_bars?branch=master)
+
 # Silver Bars Tech Test
 This is a command line app in which users can place buy/sell orders (for silver bars) and print a live order board to the terminal in order to see a summary of orders.
 - Written in Ruby, tested with RSpec.
 
 ## Setting Up
 - Clone this repo and run `bundle install` to install dependencies.
-- Use `rspec` to run unit and feature tests. This will also show test coverage.
+- Use `rspec` to run unit and feature tests.
 
 ## Interacting on the command line
 - To start interacting:
@@ -43,10 +45,10 @@ $ client.print_order_board
 In order to cancel an order, each order must be uniquely identifiable. So, on my repo class, (**LiveOrders**), there is a `generate_order_id` function, which will give each order an unique ID.
 
 ### Storing Orders
-I chose to store the buy and sell orders in a single array. If I was storing them on a database, I would store them in a single table because they are of the same class. This also made it simpler to make sure every order had a unique Order ID. 
+I chose to store the buy and sell orders in a single array. If I was storing them on a database, I would store them in a single table because they are of the same class. This also made it simpler to make sure every order had a unique Order ID and as the `remove_order` function doesn't specify the order type, it was important to make sure that a buy order does not share the same order ID as a sell order.
 
 ### Improvements
-If I had more time I would make an OrderFactory class whose responsibility it would be to create Order objects.
+If I had more time I would make an OrderFactory class whose responsibility it would be to create Order objects.  
 
 ## Demonstration
 This is the code in `example.rb`:
@@ -57,4 +59,31 @@ This is the code in `example.rb`:
 Running `ruby example.rb` will produce the following output:
   
 ![screenshot](assets/output.png)
-
+  
+    
+## User Stories
+```
+As a user,
+I want to be able to place an order
+So that I can buy or sell silver bars
+```
+```
+As a user,
+I want to be able to remove an order
+So that I can cancel an order I've placed
+```
+```
+As a user,
+I want to be able to print the order board,
+So that I can see summaries of live orders
+```
+```
+As a user,
+I want to see SELL orders organised by lowest price to highest price,
+So that I can make better purchase decisions
+```
+```
+As a user,
+I want to see BUY orders organised by highest price to lowest price,
+So that I can make better sales decisions
+```
