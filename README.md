@@ -45,7 +45,7 @@ $ client.print_order_board
 In order to cancel an order, each order must be uniquely identifiable. So, on my repo class, (**LiveOrders**), there is a `generate_order_id` function, which will give each order an unique ID.
 
 ### Storing Orders
-I chose to store the buy and sell orders in a single array. If I was storing them on a database, I would store them in a single table because they are of the same class. This also made it simpler to make sure every order had a unique Order ID and as the `remove_order` function doesn't specify the order type, it was important to make sure that a buy order does not share the same order ID as a sell order.
+I chose to store the buy and sell orders in a single array because they are objects of the same class. This also made it simpler to make sure every order had a unique Order ID and as the `remove_order` function doesn't specify the order type, it was important to make sure that a buy order does not share the same order ID as a sell order.
 
 ### Improvements
 If I had more time I would make an OrderFactory class whose responsibility it would be to create Order objects.  
