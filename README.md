@@ -5,7 +5,8 @@ This is a command line app in which users can place buy/sell orders (for silver 
 - Written in Ruby, tested with RSpec.
 
 ## Setting Up
-- Clone this repo and run `bundle install` to install dependencies.
+- Clone this repo and move into the silver_bars directory: `cd silver_bars`
+- Run `bundle install` to install dependencies.
 - Use `rspec` to run unit and feature tests.
 
 ## Interacting on the command line
