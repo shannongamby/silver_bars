@@ -13,7 +13,7 @@ I focussed on TDD and implementing OOD whilst completing this tech test.
 - Use `rspec` to run unit and feature tests.
 
 ## Interacting on the command line
-- To start interacting:
+- To start interacting, type `irb` on the command line and then:
 ```
 $ require './lib/order_board.rb'
 $ client = OrderBoard.new
